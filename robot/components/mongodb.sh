@@ -14,19 +14,26 @@ echo -n "installing ${COMPONENT}:"
 yum install -y mongodb-org  &>> $LOGFILE
 stat $?
 
+echo -n "updating mongod cinfig:"
+sudo sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
+stat $?
 
 
+echo -n "starting mongodb:" 
+systemctl enable mongod  &>> $LOGFILE
+systemctl start mongod  &>> $LOGFILE
+stat $?
 
-# systemctl enable mongod
-# systemctl start mongod
+
+echo -n "downloading schema:" 
+curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+stat $?
 
 
-
-
-# curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
-
-# cd /tmp
-# unzip mongodb.zip
-# cd mongodb-main
-# mongo < catalogue.js
-# mongo < users.js
+echo -n "injecting schema:" 
+cd /tmp
+unzip mongodb.zip
+cd mongodb-main
+mongo < catalogue.js
+mongo < users.js
+stat $?
