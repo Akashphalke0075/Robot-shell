@@ -1,6 +1,8 @@
 #!/bin/bash
 
-
+USER=$(id -u)
+if [ $user -ne 0 ]; then
+echo "you need to have sudo access"
 
 yum install nginx -y
 
