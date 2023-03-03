@@ -31,4 +31,4 @@ stat $?
 echo -n "installing nodejs dependencies:"
 cd $COMPONENT
 npm install &>> $LOGFILE
-
+stat $?
