@@ -18,29 +18,34 @@ fi
 
 }
 
-echo -n "installing nginx"
+echo -n "installing nginx:"
 yum install nginx -y  &>> /tmp/frontend.log
 stat $?
 
 
-echo -n "downloading the component"
+echo -n "downloading the component:"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 stat $?
 
-echo -n "cleaning up"
+echo -n "cleaning up:"
 rm -rf /usr/share/nginx/html/*  &>> /tmp/frontend.log
+stat $?
+
 cd /usr/share/nginx/html
+echo -n "unzipping the file"
 unzip /tmp/frontend.zip  &>> /tmp/frontend.log
+stat $?
+
 mv frontend-main/* .
 mv static/* .
 rm -rf frontend-main README.md
 stat $?
 
-echo -n "setting up proxy"
+echo -n "configuring the reverse proxy:"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
-echo -n "starting nginx"
+echo -n "starting nginx:"
 systemctl enable nginx  &>> /tmp/frontend.log
 systemctl start nginx  &>> /tmp/frontend.log
 stat $?
