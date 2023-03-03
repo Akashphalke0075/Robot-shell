@@ -32,8 +32,8 @@ stat $?
 
 echo -n "injecting schema:" 
 cd /tmp
-unzip mongodb.zip  &>> $LOGFILE
+unzip -o mongodb.zip  &>> $LOGFILE
 cd mongodb-main
-mongo < catalogue.js &>> $LOGFILE
-mongo < users.js &>> $LOGFILE
+mongo < catalogue.js  &>> $LOGFILE
+mongo < users.js  &>> $LOGFILE
 stat $?
