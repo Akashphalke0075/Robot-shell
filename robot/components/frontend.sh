@@ -4,7 +4,7 @@ set -e
 
 USERID=$(id -u)
 COMPONENT=$COMPONENT
-LOGFILE=$LOGFILE
+LOGFILE=/tmp/$COMPONENT.log
 
 
 if [ $USERID -ne 0 ]; then
