@@ -1,3 +1,7 @@
 #!/bin/bash
 
-echo "i am Mongodb"
+set -e
+
+COMPONENT=mongodb
+
+source components/common.sh
