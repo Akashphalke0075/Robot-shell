@@ -1,11 +1,11 @@
 frontend:
 	bash components/frontend.sh
 
-frontend:
-	bash components/catalogie.sh	
+catalogue:
+	bash components/catalogue.sh	
 
-frontend:
+cart:
 	bash components/cart.sh
 
-frontend:
+mongodb:
 	bash components/mongodb.sh		
