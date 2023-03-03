@@ -3,6 +3,9 @@
 set -e
 
 USERID=$(id -u)
+COMPONENT=$COMPONENT
+LOGFILE=$LOGFILE
+
 
 if [ $USERID -ne 0 ]; then
 echo -e "\e[31m you must execute as root \e[0m"
@@ -19,32 +22,32 @@ fi
 }
 
 echo -n "installing nginx:"
-yum install nginx -y  &>> /tmp/frontend.log
+yum install nginx -y  &>> $LOGFILE
 stat $?
 
 
 echo -n "downloading the component:"
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 stat $?
 
 echo -n "cleaning up:"
-rm -rf /usr/share/nginx/html/*  &>> /tmp/frontend.log
+rm -rf /usr/share/nginx/html/*  &>> $LOGFILE
 stat $?
 
 cd /usr/share/nginx/html
 echo -n "unzipping the file"
-unzip /tmp/frontend.zip  &>> /tmp/frontend.log
+unzip /tmp/$COMPONENT.zip  &>> $LOGFILE
 stat $?
 
-mv frontend-main/* .
+mv $COMPONENT-main/* .
 mv static/* .
-rm -rf frontend-main README.md
+rm -rf $COMPONENT-main README.md
 
 echo -n "configuring the reverse proxy:"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 echo -n "starting nginx:"
-systemctl enable nginx  &>> /tmp/frontend.log
-systemctl start nginx  &>> /tmp/frontend.log
+systemctl enable nginx  &>> $LOGFILE
+systemctl start nginx  &>> $LOGFILE
 stat $?
