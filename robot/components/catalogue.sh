@@ -28,6 +28,7 @@ stat $?
 echo -n "moving component to dirctory:"
 cd /home/$APPUSER
 unzip -o /tmp/catalogue.zip  &>> $LOGFILE
+rm -rf $COMPONENT
 mv $COMPONENT-main $COMPONENT
 stat $?
 
