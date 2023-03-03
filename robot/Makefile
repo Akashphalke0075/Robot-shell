@@ -7,5 +7,5 @@ catalogue:
 cart:
 	bash components/cart.sh
 
-mongodb:
+akash:
 	bash components/mongodb.sh		
