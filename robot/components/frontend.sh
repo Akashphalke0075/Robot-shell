@@ -6,7 +6,6 @@ USERID=$(id -u)
 COMPONENT=frontend
 LOGFILE=/tmp/$COMPONENT.log
 
-
 if [ $USERID -ne 0 ]; then
 echo -e "\e[31m you must execute as root \e[0m"
 exit 1
@@ -18,13 +17,11 @@ echo -e "\e[32m success \e[0m"
 else
 echo -e "\e[31m Failure \e[0m"
 fi
-
 }
 
 echo -n "installing nginx:"
 yum install nginx -y  &>> $LOGFILE
 stat $?
-
 
 echo -n "downloading the component:"
 curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
