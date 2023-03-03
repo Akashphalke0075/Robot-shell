@@ -10,7 +10,7 @@ exit 1
 fi
 
 
-echo "installing nginx"
+echo -n "installing nginx"
 yum install nginx -y  &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
 echo -e "\e[32m success \e[0m"
@@ -18,7 +18,7 @@ else
 echo -e "\e[31m Failure \e[0m"
 fi
 
-echo "downloading the component"
+echo -n "downloading the component"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 if [ $? -eq 0 ]; then
 echo -e "\e[32m success \e[0m"
@@ -26,7 +26,7 @@ else
 echo -e "\e[31m Failure \e[0m"
 fi
 
-echo "cleaning up"
+echo -n "cleaning up"
 rm -rf /usr/share/nginx/html/*  &>> /tmp/frontend.log
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip  &>> /tmp/frontend.log
