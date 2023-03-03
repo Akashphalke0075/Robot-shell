@@ -39,7 +39,7 @@ else
 echo -e "\e[31m Failure \e[0m"
 fi
 
-echo "setting up proxy"
+echo -n "setting up proxy"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 if [ $? -eq 0 ]; then
 echo -e "\e[32m success \e[0m"
@@ -47,7 +47,7 @@ else
 echo -e "\e[31m Failure \e[0m"
 fi
 
-echo "starting nginx"
+echo -n "starting nginx"
 systemctl enable nginx  &>> /tmp/frontend.log
 systemctl start nginx  &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
