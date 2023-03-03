@@ -13,24 +13,16 @@ fi
 
 echo "installing nginx"
 yum install nginx -y  &>> /tmp/frontend.log
-if [ $? eq 0 ]; then
-echo -e "\e[32m success\e[0m"
-else
-echo -e "\e[32m failure\e[0m"
+
 
 echo "downloading component:"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
-if [ $? eq 0 ]; then
-echo -e "\e[32m success\e[0m"
-else
-echo -e "\e[32m failure\e[0m"
+
+
 
 echo "performing cleanup:"
 rm -rf /usr/share/nginx/html/*
-if [ $? eq 0 ]; then
-echo -e "\e[32m success\e[0m"
-else
-echo -e "\e[32m failure\e[0m"
+
 
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>> /tmp/frontend.log
