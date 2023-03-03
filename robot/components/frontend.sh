@@ -1,11 +1,13 @@
 #!/bin/bash
 
+set -e
+
 USERID=$(id -u)
 
 if [ $USERID -ne 0 ]; then
 echo -e "\e[31m you must run as root user \e[0m]"
-fi
 exit 1
+fi
 
 
 yum install nginx -y
