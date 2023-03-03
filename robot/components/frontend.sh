@@ -10,7 +10,7 @@ exit 1
 fi
 
 
-echo "installing nginx"
+echo "installing nginx:"
 yum install nginx -y  &>> /tmp/frontend.log
 if [ $? -ne 0 ]; then
 echo -e "\e[32 success \e[0m"
