@@ -1,38 +1,37 @@
 #!/bin/bash
 
-# set -e
+set -e
 
 COMPONENT=catalogue
 APPUSER=roboshop
 source components/common.sh
 
-echo -n "configuring repo:"
-curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -  &>> $LOGFILE
-stat $?
- 
-echo -n "installing nodejs:" 
-yum install nodejs -y  &>> $LOGFILE
+echo -n "\e[32m downoading dependencies \e[0m"
+curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
 stat $?
 
-id $APPUSER   &>> $LOGFILE
-if [ $? -ne 0 ]; then
-echo -n "creating app user:" 
+echo -n "\e[32m installing nodejs \e[0m"
+yum install nodejs -y 
+stat $?
+
+echo -n "\e[32m adding user \e[0m"
 useradd $APPUSER
 stat $?
-fi
 
-echo -n "downloading component:" 
-curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
+echo -n "\e[32m downloading compo \e[0m"
+$ curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 stat $?
 
-echo -n "moving component to dirctory:"
-cd /home/$APPUSER
-unzip -o /tmp/catalogue.zip  &>> $LOGFILE
-rm -rf $COMPONENT
-mv $COMPONENT-main $COMPONENT
+echo -n "\e[32m switching and unzipping compo \e[0m"
+$ cd /home/$APPUSER
+$ unzip -o /tmp/$COMPONENT.zip
 stat $?
 
-echo -n "installing nodejs dependencies:"
-cd $COMPONENT
-npm install &>> $LOGFILE
+echo -n "\e[32m renaming file \e[0m"
+$ mv $COMPONENT-main $COMPONENT
+$ cd /home/$APPUSER/$COMPONENT
+stat $?
+
+echo -n "\e[32m installing npm \e[0m"
+$ npm install
 stat $?
