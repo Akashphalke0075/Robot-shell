@@ -14,8 +14,11 @@ echo -n "installing nodejs:"
 yum install nodejs -y  &>> $LOGFILE
 stat $?
 
+id $APPUSER
+if [ $? -ne 0 ]; then
 echo -n "adding user:"
 useradd $APPUSER
+fi
 stat $?
 
 echo -n "downloading compo:"
