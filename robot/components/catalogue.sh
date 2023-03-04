@@ -18,8 +18,8 @@ id $APPUSER  &>> $LOGFILE
 if [ $? -ne 0 ]; then
 echo -n "adding user:"
 useradd $APPUSER
-fi
 stat $?
+fi
 
 echo -n "downloading compo:"
 $ curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip" &>> $LOGFILE
