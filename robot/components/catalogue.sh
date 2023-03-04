@@ -38,3 +38,7 @@ stat $?
 echo -n "installing npm:"
 npm install  &>> $LOGFILE
 stat $?
+
+echo -n "changing permission to $APPUSER:"
+chown $APPUSER:$APPUSER /home/roboshop/$COMPONENT
+stat $?
