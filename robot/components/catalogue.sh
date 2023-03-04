@@ -21,19 +21,19 @@ stat $?
 fi
 
 echo -n "downloading compo:"
-$ curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip" &>> $LOGFILE
+curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip" &>> $LOGFILE
 stat $?
 
 echo -n "switching and unzipping compo:"
-$ cd /home/$APPUSER
-$ unzip -o /tmp/$COMPONENT.zip  &>> $LOGFILE
+cd /home/$APPUSER
+unzip -o /tmp/$COMPONENT.zip  &>> $LOGFILE
 stat $?
 
 echo -n "renaming file:"
-$ mv $COMPONENT-main $COMPONENT
-$ cd /home/$APPUSER/$COMPONENT
+mv $COMPONENT-main $COMPONENT
+cd /home/$APPUSER/$COMPONENT
 stat $?
 
 echo -n "installing npm:"
-$ npm install  &>> $LOGFILE
+npm install  &>> $LOGFILE
 stat $?
