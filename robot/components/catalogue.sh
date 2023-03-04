@@ -29,7 +29,8 @@ cd /home/$APPUSER
 unzip -o /tmp/$COMPONENT.zip  &>> $LOGFILE
 stat $?
 
-echo -n "renaming file:"
+echo -n "performing cleanup:"
+rm -rf $COMPONENT 
 mv $COMPONENT-main $COMPONENT
 cd /home/$APPUSER/$COMPONENT
 stat $?
